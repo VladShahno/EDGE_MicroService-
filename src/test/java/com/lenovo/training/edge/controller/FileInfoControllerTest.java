@@ -2,8 +2,10 @@ package com.lenovo.training.edge.controller;
 
 import com.lenovo.training.edge.entity.FileInfo;
 import com.lenovo.training.edge.repository.FileInfoRepository;
+import com.lenovo.training.edge.service.AuthService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +18,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.lenovo.training.edge.util.common.TestConstant.ORIGINAL_FILE_NAME;
+import static com.lenovo.training.edge.util.common.TestConstant.TEST_USER;
 import static com.lenovo.training.edge.util.common.TestConstant.Uri.BASE_URL;
 import static com.lenovo.training.edge.util.common.TestConstant.Uri.UPLOADED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,13 +34,17 @@ public class FileInfoControllerTest {
     private FileInfoRepository fileInfoRepository;
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    public AuthService authService;
+    @Autowired
+    public AccessToken accessToken;
 
     @Test
     @DisplayName("GET request to \"/uploaded\" endpoint should returns information about all "
         + "previously uploaded files")
     void getAllDownLoadedFilesShouldReturnInformationAboutAllPreviouslyUploaded() throws Exception {
-        fileInfoRepository.save(new FileInfo(ORIGINAL_FILE_NAME, 1));
-        fileInfoRepository.save(new FileInfo(ORIGINAL_FILE_NAME, 3));
+        fileInfoRepository.save(new FileInfo(TEST_USER, ORIGINAL_FILE_NAME, 1));
+        fileInfoRepository.save(new FileInfo(TEST_USER, ORIGINAL_FILE_NAME, 3));
 
         getResponse(HttpMethod.GET, BASE_URL + UPLOADED, "", HttpStatus.OK)
             .andExpect(jsonPath("$[0].fileName").value(ORIGINAL_FILE_NAME))

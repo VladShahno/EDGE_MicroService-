@@ -8,6 +8,7 @@ import com.lenovo.training.edge.DemoApplication;
 import com.lenovo.training.edge.dto.DeviceDto;
 import com.lenovo.training.edge.payload.response.ExceptionResponse;
 import com.lenovo.training.edge.repository.FileInfoRepository;
+import com.lenovo.training.edge.service.AuthService;
 import com.lenovo.training.edge.util.common.EmailProperties;
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +25,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.keycloak.representations.AccessToken;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,6 +54,7 @@ import static com.lenovo.training.edge.util.common.TestConstant.ORIGINAL_FILE_NA
 import static com.lenovo.training.edge.util.common.TestConstant.RESPONSE_MESSAGE;
 import static com.lenovo.training.edge.util.common.TestConstant.RESPONSE_MESSAGE_CSV;
 import static com.lenovo.training.edge.util.common.TestConstant.SERIAL_NUMBER_ALREADY_EXISTS;
+import static com.lenovo.training.edge.util.common.TestConstant.TEST_USER;
 import static com.lenovo.training.edge.util.common.TestConstant.Uri.BASE_URL;
 import static com.lenovo.training.edge.util.common.TestConstant.Uri.CSV_MODEL;
 import static com.lenovo.training.edge.util.common.TestConstant.Uri.UPLOAD;
@@ -85,6 +89,10 @@ public class CsvControllerTest {
     private MockMvc mockMvc;
     @Autowired
     private EmailProperties emailProperties;
+    @Autowired
+    public AuthService authService;
+    @Autowired
+    public AccessToken accessToken;
 
     @BeforeAll
     static void beforeAll() throws IOException {
@@ -99,6 +107,8 @@ public class CsvControllerTest {
 
     @AfterEach
     void afterEach() {
+        Mockito.when(accessToken.getPreferredUsername()).thenReturn(TEST_USER);
+        Mockito.when(authService.getToken()).thenReturn(accessToken);
         fileInfoRepository.deleteAll();
     }
 

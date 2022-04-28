@@ -2,6 +2,8 @@ package com.lenovo.training.edge.util.common;
 
 public class TestConstant {
 
+    public static final String TEST_USER = "testUser";
+
     public static final String WRONG_RESOURCE = "wrongResource";
     public static final String SERIAL_NUMBER = "serialNumber";
     public static final String MODEL = "model";

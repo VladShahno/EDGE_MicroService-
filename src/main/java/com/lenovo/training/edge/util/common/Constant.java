@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class Constant {
     public static class ContentType {
-        public static final String APPLICATION_CSV = "application/csv";
+        public static final String APPLICATION_CSV = "application/text";
         public static final String MULTIPART_FORM_DATA = "multipart/form-data";
     }
 

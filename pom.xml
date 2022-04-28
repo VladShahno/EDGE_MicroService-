@@ -21,8 +21,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <lombok.version>1.18.22</lombok.version>
         <postgresql.version>42.3.3</postgresql.version>
-        <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
-        <springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
         <jacoco.version>0.8.7</jacoco.version>
         <jackson-dataformat-csv.version>2.11.0</jackson-dataformat-csv.version>
         <mock.web.server.version>4.0.1</mock.web.server.version>

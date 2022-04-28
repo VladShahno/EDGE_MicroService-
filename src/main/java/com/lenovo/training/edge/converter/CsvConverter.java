@@ -23,7 +23,7 @@ public class CsvConverter<T> extends AbstractHttpMessageConverter<T> {
     private final ObjectMapper objectMapper;
 
     public CsvConverter(ObjectMapper objectMapper) {
-        super(new MediaType("application", "csv"));
+        super(new MediaType("application", "text"));
         this.objectMapper = objectMapper;
     }
 
