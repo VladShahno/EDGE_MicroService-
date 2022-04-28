@@ -24,6 +24,10 @@ public class FileInfo {
     private Long id;
 
     @NotBlank(message = "{not.blank}")
+    @Column(name = "user_name")
+    private String user;
+
+    @NotBlank(message = "{not.blank}")
     @Column(name = "file_name")
     private String fileName;
 
@@ -33,7 +37,8 @@ public class FileInfo {
     @Column(name = "download_date")
     private Date downloadDate;
 
-    public FileInfo(String fileName, int amount) {
+    public FileInfo(String user, String fileName, int amount) {
+        this.user = user;
         this.fileName = fileName;
         this.amount = amount;
         this.downloadDate = new Date();

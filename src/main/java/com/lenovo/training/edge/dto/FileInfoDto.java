@@ -10,13 +10,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FileInfoDto {
 
+    private String user;
+
     private String fileName;
 
     private int amount;
 
     private Date downloadDate;
 
-    public FileInfoDto(String fileName, int amount) {
+    public FileInfoDto(String user, String fileName, int amount) {
+        this.user = user;
         this.fileName = fileName;
         this.amount = amount;
         this.downloadDate = new Date();

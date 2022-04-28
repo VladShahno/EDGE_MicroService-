@@ -2,6 +2,7 @@ package com.lenovo.training.edge.service.impl;
 
 import com.lenovo.training.edge.dto.DeviceDto;
 import com.lenovo.training.edge.dto.FileInfoDto;
+import com.lenovo.training.edge.service.AuthService;
 import com.lenovo.training.edge.service.DeviceService;
 import com.lenovo.training.edge.service.FileInfoService;
 import com.lenovo.training.edge.service.ImportCsvFileService;
@@ -18,6 +19,7 @@ public class DeviceServiceImpl implements DeviceService {
     private ImportCsvFileService importCsvFileService;
     private WebClientCoreService webClientCoreService;
     private FileInfoService fileInfoService;
+    private AuthService authService;
 
     @Override
     public List<DeviceDto> createFromCsvDevicesAndFileInfo(MultipartFile file) {
@@ -28,7 +30,8 @@ public class DeviceServiceImpl implements DeviceService {
 
         if (!coreResponseList.isEmpty()) {
             fileInfoService.saveFileInfoWithEmailSending(
-                new FileInfoDto(file.getOriginalFilename(), coreResponseList.size()));
+                new FileInfoDto(authService.getToken().getPreferredUsername(),
+                    file.getOriginalFilename(), coreResponseList.size()));
         }
         return coreResponseList;
     }
