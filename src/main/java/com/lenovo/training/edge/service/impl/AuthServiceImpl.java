@@ -17,10 +17,21 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AccessToken getToken() {
+        LOGGER.info("Getting token");
+        return getKeycloakPrincipal().getKeycloakSecurityContext().getToken();
+    }
+
+    @Override
+    public KeycloakSecurityContext getSecurityContext() {
+        LOGGER.info("Getting KeycloakSecurityContext");
+        return getKeycloakPrincipal().getKeycloakSecurityContext();
+    }
+
+    private KeycloakPrincipal<KeycloakSecurityContext> getKeycloakPrincipal() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         KeycloakPrincipal<KeycloakSecurityContext> principal =
             (KeycloakPrincipal<KeycloakSecurityContext>) authentication.getPrincipal();
-        LOGGER.info("Getting user name - " + principal.getName());
-        return principal.getKeycloakSecurityContext().getToken();
+        LOGGER.info("Getting KeycloakPrincipal");
+        return principal;
     }
 }

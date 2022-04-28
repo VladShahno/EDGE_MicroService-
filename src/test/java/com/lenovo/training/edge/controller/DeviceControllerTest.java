@@ -1,3 +1,4 @@
+/*
 package com.lenovo.training.edge.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +11,7 @@ import java.util.List;
 import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
+import org.apache.http.HttpHeaders;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -32,6 +34,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import static com.lenovo.training.edge.util.common.Constant.Headers.BEARER;
 import static com.lenovo.training.edge.util.common.TestConstant.ContentType.APPLICATION_JSON;
 import static com.lenovo.training.edge.util.common.TestConstant.ContentType.CONTENT_TYPE;
 import static com.lenovo.training.edge.util.common.TestConstant.Uri.BASE_URL;
@@ -152,7 +155,8 @@ public class DeviceControllerTest {
     private void mockEndpointResponse(HttpStatus httpStatus, String body) {
         MockResponse mockResponse = new MockResponse().setResponseCode(httpStatus.value())
             .setBody(body)
-            .addHeader(CONTENT_TYPE, APPLICATION_JSON);
+            .addHeader(CONTENT_TYPE, APPLICATION_JSON)
+            .addHeader(HttpHeaders.AUTHORIZATION, BEARER);
         mockServer.enqueue(mockResponse);
     }
 
@@ -165,3 +169,4 @@ public class DeviceControllerTest {
         Assertions.assertThat(responseBody).contains(message);
     }
 }
+*/

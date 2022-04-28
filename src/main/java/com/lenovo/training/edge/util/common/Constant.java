@@ -9,6 +9,10 @@ public class Constant {
         public static final String MULTIPART_FORM_DATA = "multipart/form-data";
     }
 
+    public static class Headers {
+        public static final String BEARER = "Bearer ";
+    }
+
     public static class ExceptionMessage {
         public static final String UNEXPECTED_IMPORT_ERROR = "Unexpected import error";
         public static final String NO_FILE_PRESENT = "No file present";
