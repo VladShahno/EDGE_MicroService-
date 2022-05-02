@@ -30,6 +30,7 @@
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <greenmail.version>1.6.5</greenmail.version>
         <keycloak.version>13.0.0</keycloak.version>
+        <spring.kafka.version>2.8.5</spring.kafka.version>
     </properties>
 
     <dependencies>
@@ -152,6 +153,12 @@
             <artifactId>greenmail-junit5</artifactId>
             <version>${greenmail.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>${spring.kafka.version}</version>
         </dependency>
 
     </dependencies>

@@ -28,18 +28,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Value("${keycloak.resource}")
-    private String clientId;
-
-    @Value("${keycloak.realm}")
-    private String realm;
-
-    @Value("${swagger.keycloak.auth-server-url}")
-    private String authServer;
-
     private static final String APP_NAME = "swagger-ui";
     private static final String TOKEN_NAME = "access_token";
     private static final String OAUTH_NAME = "oauth2";
+
+    @Value("${keycloak.resource}")
+    private String clientId;
+    @Value("${keycloak.realm}")
+    private String realm;
+    @Value("${swagger.keycloak.auth-server-url}")
+    private String authServer;
 
     @Bean
     public SecurityConfiguration securityConfiguration() {

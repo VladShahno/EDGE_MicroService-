@@ -8,6 +8,4 @@ public interface WebClientCoreService {
     List<DeviceDto> getDevicesByModel(String model);
 
     DeviceDto getDeviceBySerialNumber(String serialNumber);
-
-    List<DeviceDto> createDevices(List<DeviceDto> deviceDtoList);
 }

@@ -1,7 +1,6 @@
 package com.lenovo.training.edge.service.impl;
 
 import com.lenovo.training.edge.dto.DeviceDto;
-import com.lenovo.training.edge.exception.ResourceExistsException;
 import com.lenovo.training.edge.exception.ResourceNotFoundException;
 import com.lenovo.training.edge.payload.response.ExceptionResponse;
 import com.lenovo.training.edge.service.AuthService;
@@ -55,24 +54,6 @@ public class WebClientCoreServiceImpl implements WebClientCoreService {
                     .flatMap(error ->
                         Mono.error(new ResourceNotFoundException(error.getMessage()))))
             .bodyToMono(DeviceDto.class)
-            .block();
-    }
-
-    @Override
-    public List<DeviceDto> createDevices(List<DeviceDto> deviceDtoList) {
-        return webClient
-            .post()
-            .uri(urlProperties.getAll())
-            .header(HttpHeaders.AUTHORIZATION, BEARER
-                + authService.getSecurityContext().getTokenString())
-            .body(Mono.just(deviceDtoList), DeviceDto.class)
-            .retrieve()
-            .onStatus(HttpStatus::is4xxClientError, clientResponse ->
-                clientResponse.bodyToMono(ExceptionResponse.class)
-                    .flatMap(error ->
-                        Mono.error(new ResourceExistsException(error.getMessage()))))
-            .bodyToFlux(DeviceDto.class)
-            .collectList()
             .block();
     }
 }
