@@ -1,4 +1,3 @@
-/*
 package com.lenovo.training.edge.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -169,4 +168,3 @@ public class DeviceControllerTest {
         Assertions.assertThat(responseBody).contains(message);
     }
 }
-*/
