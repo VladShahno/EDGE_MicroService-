@@ -9,6 +9,10 @@ variables:
 * #SpringMail
 * SPRING_MAIL_PASSWORD=qWERTY2017!
 * SPRING_MAIL_USERNAME=shakhno2022@gmail.com
+*
+* #keycloak
+* CLIENT_SECRET=TemvuS4LSnMxrfplSxZirNPmQme5rp8C
+* CLIENT_ID=login-app
 
 2. To up the application in a docker container, you need to run the command
       2.1  docker network create external-core_edge (creation of a common network for access to 
